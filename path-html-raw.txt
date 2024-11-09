@@ -1,0 +1,164 @@
+&#x3C;!-- Improved compatibility of back to top link: See: https://github.com/RealAlexandreAI/json-repair/pull/73 -->
+<p>&#x3C;a name="readme-top">&#x3C;/a></p>
+&#x3C;!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
+&#x3C;!-- PROJECT SHIELDS -->
+&#x3C;!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+<p><a href="https://github.com/RealAlexandreAI/json-repair/graphs/contributors"><img src="https://img.shields.io/github/contributors/RealAlexandreAI/json-repair.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/RealAlexandreAI/json-repair/network/members"><img src="https://img.shields.io/github/forks/RealAlexandreAI/json-repair.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/RealAlexandreAI/json-repair/stargazers"><img src="https://img.shields.io/github/stars/RealAlexandreAI/json-repair.svg?style=for-the-badge" alt="Stargazers"></a>
+<a href="https://github.com/RealAlexandreAI/json-repair/issues"><img src="https://img.shields.io/github/issues/RealAlexandreAI/json-repair.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://github.com/RealAlexandreAI/json-repair/blob/master/LICENSE"><img src="https://img.shields.io/github/license/RealAlexandreAI/json-repair.svg?style=for-the-badge" alt="GPL License"></a></p>
+&#x3C;!-- PROJECT LOGO -->
+&#x3C;br />
+&#x3C;div align="center">
+  &#x3C;a href="https://github.com/RealAlexandreAI/json-repair">
+    &#x3C;img src="images/logo.png" alt="Logo" width="80" height="80">
+  &#x3C;/a>
+&#x3C;h3 align="center">json-repair&#x3C;/h3>
+  &#x3C;p align="center">
+    JSON Repair: Solution for JSON Anomalies from LLMs.
+    &#x3C;br />
+    &#x3C;a href="https://goplay.tools/snippet/zyLfsLcsTwg">Online Playground&#x3C;/a>
+    ·
+    &#x3C;a href="https://github.com/RealAlexandreAI/json-repair/issues/new?labels=bug&#x26;template=bug-report---.md">Report Bug&#x3C;/a>
+    ·
+    &#x3C;a href="https://github.com/RealAlexandreAI/json-repair/issues/new?labels=enhancement&#x26;template=feature-request---.md">Request Feature&#x3C;/a>
+  &#x3C;/p>
+&#x3C;/div>
+&#x3C;!-- ABOUT THE PROJECT -->
+<h2>🔧 Repair JSON! Solution for JSON Anomalies from LLMs</h2>
+<p>Welcome to the json-repair, your go-to solution for fixing those pesky JSON anomalies that can sidetrack your Large
+Language Model (LLM) processes. Our toolkit is designed to be the Swiss Army knife for all your JSON repair needs.</p>
+<h3>🎯 Why Choose JSON Repair?</h3>
+<ul>
+<li>🏎️ GO Compatibility: Our library ensures a seamless experience for Go developers with its excellent compatibility.</li>
+<li>🔗 Zero Dependencies: We've crafted a tool with zero external dependencies, keeping it lean and mean.</li>
+<li>📚 Rich Test Cases: Benefit from a comprehensive suite of test cases that ensure reliability and accuracy.</li>
+<li>🤖 Auto-Detection &#x26; Repair: Intelligently identifies and corrects a wide range of JSON errors, from syntax to
+structural issues.</li>
+<li>📐 Terminal CLI Support: The feature can also be used in the command-line and can be chained with command pipes.</li>
+<li>⚙️ No Anxiety About Error: json-repair always gives the string result.</li>
+<li>🌐 Open Source: Join a vibrant community of developers contributing to the ongoing evolution of the toolkit.</li>
+</ul>
+<h3>🔍 Supported Broken LLM JSON Output</h3>
+<ul>
+<li>Single quote <code>"</code></li>
+<li>Line feed <code>\n</code></li>
+<li>Improperly formatted JSON string <code>{"key": TRUE, "key2": FALSE, "key3": Null  </code></li>
+<li>String with mixed quotes <code>{'key': 'string', 'key2': false, \"key3\": null, \"key4\": unquoted}</code></li>
+<li>Unclosed array <code>[1, 2, 3, 4</code></li>
+<li>Unclosed array object <code>{"employees":["John", "Anna",</code></li>
+<li>Standalone left bracket <code>[</code></li>
+<li>Standalone right bracket <code>]</code></li>
+<li>Array with extra line breaks <code>[[1\n\n]</code></li>
+<li>Incorrect key-value pair <code>{foo: [}</code></li>
+<li>Correct JSON string <code>{"text": "The quick brown fox won\'t jump"}</code></li>
+<li>Incorrect key-value pair <code>{"value_1": "value_2": "data"}</code></li>
+<li>JSON string with comment <code>{"value_1": true, COMMENT "value_2": "data"}</code></li>
+<li>JSON string with leading spaces  <code>- { "test_key": ["test_value", "test_value2"] }</code></li>
+<li>String containing a link <code>{ "content": "[LINK]("https://google.com")" }</code></li>
+<li>Unclosed link string <code>{ "content": "[LINK](" }</code></li>
+<li>Unclosed link and extra key string <code>{ "content": "[LINK](", "key": true }</code></li>
+<li>Incorrect key-value pair <code>{"key":"",}</code></li>
+<li>etc.</li>
+</ul>
+&#x3C;p align="right">(&#x3C;a href="#readme-top">back to top&#x3C;/a>)&#x3C;/p>
+&#x3C;!-- GETTING STARTED -->
+<h2>🏁 Getting Started</h2>
+<p>To add the JSON Repair to your Go project, use the following command:</p>
+<pre><code class="language-shell">go get github.com/RealAlexandreAI/json-repair
+</code></pre>
+&#x3C;!-- USAGE EXAMPLES -->
+<h2>Usage</h2>
+<pre><code class="language-go">package main
+
+import (
+    "github.com/RealAlexandreAI/json-repair"
+)
+
+func main() {
+    // broken JSON string from LLM
+    in := "```json {'employees':['John', 'Anna', ```"
+
+    jsonrepair.RepairJSON(in)
+
+    // output:	{"employees":["John","Anna"]}
+}
+</code></pre>
+<blockquote>
+<p>Additionally, there is <code>MustRepairJSON</code> for scenarios that are not suitable for error handling, such as pipes and
+trusted environments</p>
+</blockquote>
+<p><em>For more examples, please refer to
+the <a href="https://github.com/RealAlexandreAI/json-repair/blob/master/main_test.go">Test Cases</a>
+Or &#x3C;a href="https://goplay.tools/snippet/zyLfsLcsTwg">Online Playground&#x3C;/a></em></p>
+&#x3C;p align="right">(&#x3C;a href="#readme-top">back to top&#x3C;/a>)&#x3C;/p>
+<h2>Terminal CLI</h2>
+<pre><code class="language-bash">
+brew install realalexandreai/tap-jsonrepair/jsonrepair
+
+# from raw string
+jsonrepair -i "{'employees':['John', 'Anna', "
+# output: {"employees":["John", "Anna", "Peter"]}
+
+# from file
+jsonrepair -f &#x3C;json-file>.json
+</code></pre>
+<p><em>You can also download binary from Release, please refer to
+the <a href="https://github.com/RealAlexandreAI/json-repair/releases">Releases</a>.</em></p>
+&#x3C;!-- ROADMAP -->
+<h2>Roadmap</h2>
+<ul>
+<li>[x] Convert project from Python</li>
+<li>[x] Minimum Go version</li>
+<li>[x] Cover test cases</li>
+<li>[x] Terminal CLI support</li>
+<li>[x] Workflow and GitHub Action</li>
+<li>[x] Add Homebrew tap</li>
+<li>[ ] Support Full-width character detection</li>
+</ul>
+<p>See the <a href="https://github.com/RealAlexandreAI/json-repair/issues">open issues</a> for a full list of proposed features (and
+known issues).</p>
+&#x3C;p align="right">(&#x3C;a href="#readme-top">back to top&#x3C;/a>)&#x3C;/p>
+&#x3C;!-- CONTRIBUTING -->
+<h2>Contributing</h2>
+<p>Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
+contributions you make are <strong>greatly appreciated</strong>.</p>
+<p>If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also
+simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!</p>
+<ol>
+<li>Fork the Project</li>
+<li>Create your Feature Branch (<code>git checkout -b feature/AmazingFeature</code>)</li>
+<li>Commit your Changes (<code>git commit -m 'Add some AmazingFeature'</code>)</li>
+<li>Push to the Branch (<code>git push origin feature/AmazingFeature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+&#x3C;p align="right">(&#x3C;a href="#readme-top">back to top&#x3C;/a>)&#x3C;/p>
+<h2>Related Project</h2>
+<ul>
+<li><a href="https://github.com/mangiucugna/json_repair">python json_repair</a> - Inspiration of json-repair.</li>
+</ul>
+&#x3C;!-- LICENSE -->
+<h2>License</h2>
+<p>Distributed under the GPLv3 License. See <code>LICENSE</code> for more information.</p>
+&#x3C;p align="right">(&#x3C;a href="#readme-top">back to top&#x3C;/a>)&#x3C;/p>
+&#x3C;!-- CONTACT -->
+<h2>Contact</h2>
+<p>RealAlexandreAI - <a href="https://twitter.com/RealAlexandreAI">@RealAlexandreAI</a></p>
+<p>Project Link: <a href="https://github.com/RealAlexandreAI/json-repair">https://github.com/RealAlexandreAI/json-repair</a></p>
+&#x3C;p align="right">(&#x3C;a href="#readme-top">back to top&#x3C;/a>)&#x3C;/p>
+&#x3C;!-- MARKDOWN LINKS &#x26; IMAGES -->
+&#x3C;!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
