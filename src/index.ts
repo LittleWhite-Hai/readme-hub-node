@@ -7,11 +7,22 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { removePosition } from "unist-util-remove-position";
 import { visit } from "unist-util-visit";
-
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 import fs from "fs";
+import { marked } from "marked";
+
 dotenv.config();
+
+const highlightHeaders = `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+<script>hljs.highlightAll();</script>`;
 
 /**
  * 格式化时间戳为中文格式
@@ -117,30 +128,55 @@ app.get("/raw/github.com/*", async (req, res) => {
   // 解析请求路径
   const path = req.path.replace("/raw/", "").replace(/\/$/, "");
   const parsedPath = path.split("/");
+
   // 通过GitHub API获取README内容
-  const octokitRes: any = await octokit.rest.repos.getContent({
-    owner: parsedPath[1],
-    repo: parsedPath[2],
-    path: "README.md",
-    headers: {
-      "content-type": "text/plain",
-    },
-  });
+  const octokitRes: any = await octokit.rest.repos
+    .getContent({
+      owner: parsedPath[1],
+      repo: parsedPath[2],
+      path: "README.md",
+      headers: {
+        "content-type": "text/plain",
+      },
+    })
+    .catch((err) => {
+      console.error("获取github仓库内容失败:", err);
+      res.send("获取github仓库内容失败:" + err);
+      return;
+    });
 
   const content = Buffer.from(octokitRes.data.content, "base64").toString();
-  const processor = unified()
-    .use(remarkParse)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeStringify);
 
-  const file = await processor.process(content);
-
-  res
-    .type("text/html")
-    .send("<html><body>" + String(file.value) + "</body></html>");
+  marked.setOptions({
+    async: true,
+    pedantic: false,
+    gfm: true,
+  });
+  marked.use(
+    markedHighlight({
+      langPrefix: "hljs language-",
+      highlight(code, lang) {
+        const language = hljs.getLanguage(lang) ? lang : "plaintext";
+        return hljs.highlight(code, { language }).value;
+      },
+    })
+  );
+  const html = await marked.parse(content);
+  const finalHtml = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      ${highlightHeaders}
+    </head>
+    <body>
+      ${html}
+    </body>
+  </html>
+`;
+  res.type("text/html").send(finalHtml);
 
   // 将翻译结果持久化到文件
-  fs.writeFile("path-html-raw.txt", String(file.value), (err) => {
+  fs.writeFile("path-html-raw.txt", finalHtml, (err) => {
     if (err) {
       console.error("写入文件失败:", err);
     }
